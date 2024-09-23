@@ -1,0 +1,16 @@
+# Ignore .env file
+.env
+
+# Node modules
+node_modules/
+
+# Logs
+logs
+*.log
+
+# Build output
+build/
+dist/
+
+# Other files to ignore
+.DS_Store
