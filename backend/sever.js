@@ -6,6 +6,7 @@ require("dotenv").config();
 const cors = require("cors");
 
 const jwt = require("jsonwebtoken");
+const Video = require("./models/Video");
 
 // Create express app
 const app = express();
@@ -69,6 +70,28 @@ app.post("/api/login", async (req, res) => {
     res.json({ token });
   } catch (err) {
     res.status(500).json({ msg: "Server error" });
+  }
+});
+
+// Route to add a new video
+app.post('/api/videos', async (req, res) => {
+  const { url, title } = req.body;
+  try {
+    const newVideo = new Video({ url, title });
+    const savedVideo = await newVideo.save();
+    res.status(201).json(savedVideo);
+  } catch (err) {
+    res.status(500).json({ message: 'Server error', error: err.message });
+  }
+});
+
+// Route to fetch all videos
+app.get('/api/videos', async (req, res) => {
+  try {
+    const videos = await Video.find();
+    res.status(200).json(videos);
+  } catch (err) {
+    res.status(500).json({ message: 'Server error', error: err.message });
   }
 });
 
