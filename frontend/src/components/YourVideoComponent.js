@@ -1,15 +1,16 @@
-import React, { useContext } from 'react';
-import AuthContext from './context/AuthContext';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { logout } from '../actions/authActions';
 
 const YourVideoComponent = () => {
     const navigate = useNavigate();
-  const { logout } = useContext(AuthContext);
+
+  const dispatch = useDispatch();
 
   const handleLogout = () => {
-    logout();
-    // Optionally redirect to login or home
-    navigate('/login');
+    dispatch(logout()); // Dispatch the logout action
+    navigate('/login'); // Redirect to the login page
   };
 
   return (
@@ -19,12 +20,6 @@ const YourVideoComponent = () => {
       <div className="container my-5">
         <h2 className="text-center">Watch My YouTube Video!</h2>
         <div className="embed-responsive embed-responsive-16by9">
-          {/* <iframe
-            className="embed-responsive-item"
-            src="https://www.youtube.com/embed/YOUR_VIDEO_ID"
-            allowFullScreen
-            title="YouTube video player"
-          ></iframe> */}
           <iframe
             width="560"
             height="315"

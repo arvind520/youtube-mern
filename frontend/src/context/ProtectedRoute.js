@@ -1,10 +1,9 @@
-import React, { useContext } from 'react';
 import { Navigate } from 'react-router-dom';
-import AuthContext from './AuthContext';
+import { useSelector } from 'react-redux';
 
 const ProtectedRoute = ({ children }) => {
-    const { isAuthenticated } = useContext(AuthContext);
-  
+    const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+    console.log(isAuthenticated)
     if (!isAuthenticated) {
       // Redirect to login if user is not authenticated
       return <Navigate to="/login" />;
