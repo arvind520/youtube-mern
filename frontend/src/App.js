@@ -1,12 +1,13 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
-import Register from './Register';
-import Login from './Login';
-import YourVideoComponent from './YourVideoComponent';
+import Register from './components/Register';
+import Login from './components/Login';
+import YourVideoComponent from './components/YourVideoComponent';
 import ProtectedRoute from './context/ProtectedRoute';
-import AddVideo from './AddVideo';
-import VideoList from './VideoList';
+import AddVideo from './components/AddVideo';
+import VideoList from './components/VideoList';
+import Homepage from './components/Homepage';
 
 function App() {
   return (
@@ -26,7 +27,7 @@ function App() {
               </ProtectedRoute>
             } 
           />
-          <Route path="/" element={<YourVideoComponent />} />
+          <Route path="/" element={<Homepage />} />
         </Routes>
       </Router>
     </AuthProvider>
